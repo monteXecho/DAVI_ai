@@ -1,0 +1,25 @@
+[project]
+name = "davi-ai"
+version = "0.1.0"
+description = "Core AI parts for MijnDAVI"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas",
+    "haystack-ai>=2.21.0",
+    "hayhooks>=0.10.1",
+    "loguru",
+    "opensearch-haystack",
+    "pdfminer.six",
+    "sentence-transformers>4.1.0",
+    "transformers[torch,sentencepiece]",
+    "python-dotenv>=1.1.1",
+    "docling>=2.40.0",
+    "nltk>=3.9.1",
+    "trafilatura>=2.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.4.0",
+]
