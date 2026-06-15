@@ -14,6 +14,7 @@ from hayhooks import BasePipelineWrapper
 
 
 from davi.document_store import main_doc_store, get_document_store
+from davi.document_deletion import delete_indexed_documents_by_file_ids
 from davi.indexing import create_indexing_pipeline
 
 
@@ -49,7 +50,13 @@ class PipelineWrapper(BasePipelineWrapper):
                 with tempfile.TemporaryDirectory() as temp_dir:
                     if index_id is not None:
                         writer = self.pipeline.get_component('writer')
-                        writer.document_store = get_document_store(index_name=index_id)
+                        doc_store = get_document_store(index_name=index_id)
+                        writer.document_store = doc_store
+                    else:
+                        doc_store = main_doc_store
+
+                    # Drop stale chunks for the same file_ids (re-upload after DB-only delete)
+                    delete_indexed_documents_by_file_ids(doc_store, file_ids)
 
                     file_paths = []
                     metas = []
