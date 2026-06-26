@@ -9,7 +9,7 @@ dependencies = [
     "haystack-ai>=2.21.0",
     "hayhooks>=0.10.1",
     "loguru",
-    "opensearch-haystack",
+    "opensearch-haystack>=4.2.0",
     "pdfminer.six",
     "sentence-transformers>4.1.0",
     "transformers[torch,sentencepiece]",
